@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetching_Data</title>
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+  />
+  <!-- MDB -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
+    rel="stylesheet"
+  />
+      
+   <!-- MDB  -->
+  <script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"
+  ></script>
+
+  <style>
+    .check{
+        margin-left: 45%;
+        margin-bottom: 3%;
+        margin-top: 1%;
+    }
+    body{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  </style>
+
+  <script>
+    function load(){
+        fetch("https://randomuser.me/api/?results=250").then((data)=>{
+            var formatedData=data.json();
+            formatedData.then((successResponse)=>{
+                var arr=successResponse.results;
+                for(let i=0; i<arr.length; i++){
+                    var fullname=arr[i].name.title+" "+arr[i].name.first+" "+arr[i].name.last;
+                    var Email=arr[i].email;
+                    var picture=arr[i].picture.thumbnail;
+                    var Registeration=arr[i].registered.date;
+                    var Age=arr[i].dob.age;
+                    var Gender=arr[i].gender;
+                    var Phone=arr[i].phone;
+                    var Country=arr[i].location.country;
+                    var UserName=arr[i].login.username;
+                    
+                var tbody=document.getElementById("tbody");    
+                var tr=document.createElement("tr");
+
+                var td1=document.createElement("td");
+                var td2=document.createElement("img");
+                var td3=document.createElement("td");
+                var td4=document.createElement("td");
+                var td5=document.createElement("td");
+                var td6=document.createElement("td");
+                var td7=document.createElement("td");
+                var td8=document.createElement("td");
+                var td9=document.createElement("td");
+                var td10=document.createElement("td");
+
+                   var index=i+1;
+                   td1.innerText=index;
+                    tr.appendChild(td1);
+                    console.log(td1);
+                    tbody.appendChild(tr);
+
+                    td2.src=picture;
+                    tr.appendChild(td2);
+                    tbody.appendChild(tr);
+
+                    td3.innerText= fullname;
+                    tr.appendChild(td3);
+                    tbody.appendChild(tr);
+
+                    td4.innerText= Email;
+                    tr.appendChild(td4);
+                    tbody.appendChild(tr);
+
+                    td5.innerText=Registeration;
+                    tr.appendChild(td5);
+                    tbody.appendChild(tr);
+
+                    td6.innerText=Age;
+                    tr.appendChild(td6);
+                    tbody.appendChild(tr);
+
+                    td7.innerText=Gender;
+                    tr.appendChild(td7);
+                    tbody.appendChild(tr);
+
+                    td8.innerText=Phone;
+                    tr.appendChild(td8);
+                    tbody.appendChild(tr);
+
+                    td9.innerText=Country;
+                    tr.appendChild(td9);
+                    tbody.appendChild(tr);
+
+                    td10.innerText=UserName;
+                    tr.appendChild(td10);
+                    tbody.appendChild(tr);
+
+                    
+                }    
+            },(failureResponse)=>{
+                //error
+            });
+        })
+    }
+  </script>
+</head>
+<body >
+    <h2 class="text-center">Click below to fetch your data</h2>
+    <button class="btn btn-primary check" onclick="load()">Button</button>
+   <section>
+    <table class="table table-bordered" >
+        <tr>
+            <thead>
+                <th scope="row">#</th>
+                <th scope="row">PassportSize</th>
+                <th scope="row">Name</th>
+                <th scope="row">Email</th>
+                <th scope="row">Registeration time</th>
+                <th scope="row">Age</th>
+                <th scope="row">Gender</th>
+                <th scope="row">Phone</th>
+                <th scope="row">Country</th>
+                <th scope="row">UserName</th>
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        </tr>
+    </table>
+   </section>
+</body>
+</html>
